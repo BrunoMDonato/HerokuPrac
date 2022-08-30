@@ -1,0 +1,36 @@
+{% extends 'Heroku1/base.html' %}
+
+{% block main_content %}
+
+
+<div style="background-color: rgb(228, 210, 186);">
+    <div class="container" >
+            <br><h1 style="text-align: center;"> Mensajes recibidos... </h1>
+            <center><img  src="https://media.giphy.com/media/WoWm8YzFQJg5i/giphy.gif" class="rounded" height="200px"></center><hr>
+
+              
+
+            {% if mens %}
+
+                {% for mensaje in mens %}
+
+                    {% if mensaje.receptor == request.user %}
+
+                        De: <strong>{{mensaje.emisor}}</strong> - | {{mensaje.fechap}} |  <br>
+                        
+                        {{mensaje.mensaje|safe}} <hr>
+                    {% endif %}
+                {%endfor%}
+            {% endif %}
+  
+  
+                    
+
+
+
+
+                
+    </div>
+</div>
+
+{% endblock main_content %}

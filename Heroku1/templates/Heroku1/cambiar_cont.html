@@ -1,0 +1,31 @@
+{% extends 'Heroku1/base.html' %}
+
+{% block main_content %}
+
+<div style="background-color: rgb(228, 210, 186);">
+
+    <br><br>
+    <center>
+        <h2>Cambiar contraseña</h2>
+    </center>
+    <br><br><br>
+
+    <div class="container">
+        <table>
+            <form method="post">
+                <b> 
+                {% csrf_token %}
+                {{ form.as_p }}
+                </b>
+                <br>
+                <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
+                <br>
+            </form>
+        </table>
+
+
+    </div>
+</div>
+
+    {% endblock main_content %}
+

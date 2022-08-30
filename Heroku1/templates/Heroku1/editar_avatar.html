@@ -1,0 +1,36 @@
+{% extends 'Heroku1/base.html' %}
+
+{% block main_content %}
+
+
+<div style="background-color: rgb(228, 210, 186);">
+    <div class="container" >
+
+        {% if  request.user.is_superuser %}
+            <br><h1 style="text-align: center;"> Modifique el avatar...</h1><hr><br>
+            
+                <center>
+                    <form method="post" enctype='multipart/form-data' ><b>
+
+                        {% csrf_token %}  
+                        {{ form.media }}                   
+                        {{ form.as_p }}
+   
+
+                    <br></b><hr><input type="submit" value="Enviar" class="btn btn-primary btn-lg mb-5">
+                </center>
+
+                <script>
+                    var nom = "{{ user.id }}";
+                    document.getElementById("perf").value = nom;
+                </script>
+
+        {% else %}
+
+            <center><br><br><h2 style="color: red;"><strong>Usted no tiene acceso aquí</strong></h2><br><br><br></center>
+
+        {%endif%}
+    </div>
+</div>
+
+{% endblock main_content %}

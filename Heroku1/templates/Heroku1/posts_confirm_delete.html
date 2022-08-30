@@ -1,0 +1,25 @@
+{% extends 'Heroku1/base.html' %}
+{% block main_content %}
+
+<div style="background-color: rgb(228, 210, 186);">
+    <center><br><br>
+        <h1>¿Seguro que desea borrar el post?</h1><br>
+        <form method="post">
+
+            {% csrf_token %}
+
+            <label>
+                <i><strong style="font-size: 30px;"> {{object.titulo}} </strong></i><br><br>
+
+                {% if object.imagen %}
+                    <a><img  src= "{{object.imagen.url}}"  width = "20%" ></a>
+
+                {%endif%}
+            </label><br><br>
+            
+            <input type="submit" value="Confirmar" class="btn btn-primary btn-md mt-3">
+        </form>
+    </center>
+</div>
+
+{% endblock main_content %}

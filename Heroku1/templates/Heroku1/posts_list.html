@@ -1,0 +1,58 @@
+{% extends 'Heroku1/base.html' %}
+{% block main_content %}
+
+
+<div style="background-color: rgb(228, 210, 186);">
+
+    <br><h1 style="text-align:center">Posts </h1><hr>
+
+    <p class="text-center" >
+        <a class="btn btn-primary" href="/nuevo">Crear Post →</a><hr>
+    </p><br><br>
+
+    <div class="container">
+        <div class="card-columns" >
+            
+            
+            {% for post in object_list %}
+
+            <center>
+                <div class="card" style="width: 200mm; background-color: rgb(215, 189, 154);">
+                    <div style=" background-color: rgb(208, 170, 121);" class="card-header">
+                        <h2 class="font-weight-bold">{{ post.titulo|safe }}</h2> 
+                        <span class="text-muted"> <strong> por: {{ post.autor }} | {{ post.fecha_pub }}</strong></span>
+                    </div>
+                    <br>
+                    
+                    <div class='card-title' >
+                        {% if post.imagen %}
+                            <a><img class="rounded" src= "{{post.imagen.url}}"  width = "50%" ></a>
+                        {%endif%}
+                    </div> 
+                    
+        
+                    <div class="card-body" style="width: 200mm; background-color: rgb(215, 189, 154); ">
+                        <p>{{ post.contenido|slice:'340'|safe }}</p>
+                    </div>  
+
+                    <div class="card text-center p-3 m-3" style="background-color: rgb(208, 170, 121);">
+                        <div class="card-body" style="background-color: rgb(208, 170, 121);">
+                            
+                            {% if user.id == post.autor.id %} 
+                            | <a class="card-link" href="{%url 'post_detail' post.id%}">Leer mas</a> |
+                            |<a class="card-link" href="{%url 'post_update' post.id%}">Actualizar</a> |
+                            |<a class="card-link" href="{%url 'post_delete' post.id%}">Borrar</a> |
+                            {%else%}
+                                 <a class="card-link" href="{%url 'post_detail' post.id%}">-Leer mas-</a> 
+                            {% endif %}  
+
+                        </div>
+                    </div>                          
+                </div>
+                </center>  
+                <br><hr><br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock main_content %}

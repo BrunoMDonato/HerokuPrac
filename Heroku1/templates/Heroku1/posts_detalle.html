@@ -1,0 +1,74 @@
+{% extends 'Heroku1/base.html' %}
+{% block main_content %}
+
+<div style="background-color: rgb(228, 210, 186);">
+
+    <div class="container-sm mb-5" > <br>
+
+        <h1 style="text-align: center;" >  Info del Post </h1><br>
+            <i><h2 class="text-center"> {{posts.titulo|safe}}</h2></i>
+            <i><h5 class="text-center"> {{posts.subtitulo|safe}}</h5></i>
+            
+            <hr>
+
+            <p class="text-center" style="font-size: 20px;">autor: <strong>{{ posts.autor}}</strong></p><hr>
+            
+                {% if posts.imagen %}
+                                        
+                    <p class="text-center"><img class="rounded" src=" {{ posts.imagen.url }} " width='45%'></p>
+
+                {%endif%}
+                                                            
+                    <p class="text-shadow" align='justify'> {{posts.contenido|safe}}</p><br><hr>
+                    
+                                                            
+                    <form action="{% url 'like_post' posts.pk%}" method="POST">
+                        
+                        {% csrf_token %}
+                        
+                        {% if liked  %}
+                        
+                        <button type="submit", name="post_id" value="{{posts.id}}" class="btn btn-danger btm-sm" >unlike</button> 
+                        
+                        {%else%}
+                        
+                        <button type="submit", name="post_id" value="{{posts.id}}" class="btn btn-primary btm-sm" >Like</button> 
+                        
+                        {% endif %}
+                        - {{ likes_totales }}
+                    </form><br><br><br>
+
+                    <h2>Comentarios...</h2><br>
+
+                    {% if not posts.comentarios.all %}
+
+                        No hay comentarios! <a href="{% url 'agregar_comentario' posts.pk %}"> <br>Agregar uno...</a>
+                            
+                        </a>
+                    {% else %}
+                        
+                        <a href="{% url 'agregar_comentario' posts.pk %}">Agregar comentario...</a><br><br>
+
+
+                        {% for comentario in posts.comentarios.all %}
+
+                            <strong>
+                                {{comentario.usuario}} - {{comentario.fecha_pub}}<br>
+                            </strong>    
+                                {{comentario.contenido|safe}} <hr>
+
+                        {%endfor%}
+                        <br><a href="{% url 'agregar_comentario' posts.pk %}">Agregar comentario...</a>
+                    {% endif %}
+
+                  
+
+                    <hr><p class="text-center" >
+                
+                        <a href="{% url 'Inicio' %}" style="font-size: 23px;">Inicio</a> | 
+                        <a href="{% url 'post_list' %}" style="font-size: 23px;">Atras</a> 
+        
+                    </p>                                                            
+    </div>
+</div>
+{% endblock main_content %}

@@ -1,0 +1,42 @@
+{% extends 'Heroku1/base.html' %}
+
+{% block main_content %}
+
+<div style="background-color: rgb(228, 210, 186);">
+    <center>
+        <br><h2>Inicio de sesion</h2><br>
+
+            {% if bool %}
+
+                {% for error in errors %}
+
+                    <p style="color:#FF0000; font-size: 38px;"><b> {{error}} </b></p><br>
+
+                {% endfor %}
+
+                <a href="{% url 'Login' %}" style="color: #FF0000; font-size: 28px;">Reintentar Login</a><br><br><br><br><br><br>
+
+            {% else %}        
+    </center>
+
+                <div class="container mt-5 text-center">
+                    <table>
+                        <form method="post"><b>
+
+                            {% csrf_token %}
+
+                            {{ form.as_p }} <br>
+                        
+                            </b><button type="submit" class="btn btn-primary">Iniciar Sesion</button><br><br>
+                        
+                        </form>
+                    </table>
+
+                        <b><a href="{% url 'Register' %}">Crear cuenta</a></b><br><br><br><br>    
+                                                        
+
+                </div>
+</div>                
+        {% endif %}  
+{% endblock main_content %}
+

@@ -1,0 +1,24 @@
+{% extends 'Heroku1/base.html' %}
+
+{% block main_content %}
+
+<div style="background-color: rgb(228, 210, 186);">
+    <center>
+        <br><br><h2><b>Editar Perfil</b></h2>                
+    </center>
+
+        <div class="container">
+            <center><img  src="https://www.dreamhost.com/blog/wp-content/uploads/2019/01/Blog-experts-opt-750x498.jpg" class="rounded" height="300px" > </center>                 
+            
+            <form method="post" >
+                <b>            
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </b>
+                <center><br><input type="submit" value="Actualizar" class="btn btn-primary">         </center>               
+            </form>   
+        </div>
+</div>
+
+{% endblock main_content %}
+    

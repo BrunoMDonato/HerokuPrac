@@ -1,0 +1,28 @@
+{% extends 'Heroku1/base.html' %}
+
+{% block main_content %}
+
+
+<div style="background-color: rgb(228, 210, 186);">
+    <div class="container" >
+            <br><h1 style="text-align: center;"> Redacte su mensaje...</h1><hr>
+            
+                <center>
+                    <form method="post"><b>
+
+                        {% csrf_token %}  
+                        {{ form.media }}                   
+                        {{ form.as_p }}
+   
+
+                    </b><hr><input type="submit" value="Enviar" class="btn btn-primary btn-lg mb-5">
+                </center>
+
+                <script>
+                    var nom = "{{ user.id }}";
+                    document.getElementById("perf").value = nom;
+                </script>
+    </div>
+</div>
+
+{% endblock main_content %}

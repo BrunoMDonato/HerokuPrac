@@ -1,0 +1,44 @@
+{% extends 'Heroku1/base.html' %}
+{% block main_content %}
+
+<div style="background-color: rgb(228, 210, 186);">
+
+    {% if user.id == posts.autor.id %} 
+
+
+        <h1 style="text-align: center;"> Actualizar Post</h1><hr><br/><br/>                            
+
+            <div class="container">
+          
+
+                    <form method="post" enctype='multipart/form-data'>
+                        <center>                          
+                            <b> 
+                                {% csrf_token %}
+                                {{ form.media }}
+                                {{ form.as_p }}
+                            </b><hr>
+                            <input type="submit" value="Actualizar" class="btn btn-primary btn-lg mb-5">
+                        </center>
+                    </form>                
+            </div>
+    {%else%}<br><br><br>
+            
+        <center>
+            <div style="color: red;">
+                <h1>Usted no tiene acceso a Editar o Borrar el post</h1><br><br>
+
+                <a class="navbar-brand" href="/login">Cambiar Usuario</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                                
+            </div>
+            
+        </center>
+        <script>
+            var nom = "{{ user.id }}";
+            document.getElementById("usua").value = nom;
+        </script>
+
+    {%endif%}
+</div>                                
+{% endblock main_content %}

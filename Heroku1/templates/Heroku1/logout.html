@@ -1,0 +1,26 @@
+{% extends 'Heroku1/base.html' %}
+{% block main_content %}
+
+<div style="background-color: rgb(228, 210, 186);">
+
+    <html>
+    <body>
+        
+
+    <div class="container">
+        <br><br><h1>Logout</h1><br>
+        <p style="font-size: 30px;">
+            Se ha <strong> cerrado</strong> su sesion.
+        </p>
+        <p>
+            <i><a href="/" style="font-size: 20px;">Ir al inicio |</a></i>
+            <i><a href="{%url 'Register'%}" style="font-size: 20px;">Crear cuenta |</a></i>
+            <i><a href="{%url 'Login' %}" style="font-size: 20px;">Iniciar sesion </a></i>
+        </p><br><br><br><br><br><br>
+        
+    </div>
+    </body>
+    </html>
+
+</div> 
+{% endblock main_content %}
