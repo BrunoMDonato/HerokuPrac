@@ -32,7 +32,7 @@ from django.urls import reverse, reverse_lazy
 
 def Inicio(request):
 
-    titulos = list(Posts.objects.all())
+    #titulos = list(Posts.objects.all())
 
     avatars = Avatar.objects.filter(user=request.user.id)
     avatares = avatars.order_by('-pk')
@@ -41,7 +41,7 @@ def Inicio(request):
     except:
         avats = None
  
-    return render (request, 'Heroku1/index.html', {'posts':titulos, 'avatar' : avats})
+    return render (request, 'Heroku1/index.html') #{'posts':titulos, 'avatar' : avats})
 
    
 
