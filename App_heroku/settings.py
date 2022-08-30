@@ -30,7 +30,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Heroku1'
+    'Heroku1',
+    "ckeditor"
+
 ]
 
 MIDDLEWARE = [
